@@ -7,7 +7,6 @@ const slides = [
   { src: "/carousel-2.jpg", alt: "Vajra PowerBank — Midnight black" },
   { src: "/carousel-3.jpg", alt: "Vajra PowerBank — Detail logo" },
   { src: "/carousel-4.jpg", alt: "Vajra PowerBank — Black and purple" },
-  { src: "/carousel-5.jpg", alt: "Vajra PowerBank — Profile view" },
 ];
 
 export default function Carousel() {
@@ -23,6 +22,16 @@ export default function Carousel() {
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const el = trackRef.current;
+      if (!el) return;
+      const next = (Math.round(el.scrollLeft / el.clientWidth) + 1) % slides.length;
+      el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
+    }, 3000);
+    return () => clearInterval(id);
   }, []);
 
   const scrollTo = (i) => {

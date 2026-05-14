@@ -22,7 +22,7 @@ export default function Nav() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
         <Link href="/" className="text-[15px] font-medium tracking-tight">
-          Vajra
+          Vajra PowerBank
         </Link>
         <Link
           href="/checkout"
